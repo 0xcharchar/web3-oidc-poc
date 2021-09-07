@@ -1,28 +1,20 @@
 # Web3 OpenID Connect Proof of Concept
 
-Forked from scaffold-eth
+Forked from scaffold-eth.
+
+This performs an OAuth2.0 flow plus fakes an OpenID `userinfo` endpoint, making it an OpenID Connect flow.
 
 ## Running it
 
-Run a Matrix server:
+Run the Matrix Synapse server and backend application:
 
-Run the app:
+```sh
+docker-compose up
+```
+
+Run the frontend app:
 
 ```sh
 # frontend
 yarn start
-
-# backend
-yarn backend
 ```
-
-## TODO
-
-* [x] move the docker-compose back to this repo
-* [x] put the backend in it
-* [ ] use the loginToken to get an access_token
-* [ ] show the chat
-* [ ] send to the chat??
-* [ ] fix IDP to send the ENS name or wallet address as the username
-* [ ] update this repo with a diagram
-* [ ] take a video

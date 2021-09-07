@@ -213,7 +213,7 @@ function Swap({ selectedProvider, tokenListURI }) {
     }
   }
 
-  usePoller(getAccountInfo, 6000)
+  usePoller(getAccountInfo, 100000)
 
   let route = trades ? (trades.length > 0 ? trades[0].route.path.map(function(item) {
     return item['symbol'];

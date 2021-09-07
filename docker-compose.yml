@@ -47,6 +47,8 @@ services:
       dockerfile: Dockerfile
     networks:
       - matrix-network
+    environment:
+      - NODE_ENV=development
     volumes:
       - ./packages/backend/index.js:/usr/src/app/index.js
     ports:

@@ -99,7 +99,7 @@ export default function ChatWindow({ loginToken, accessToken }) {
   }, [matrixAccessToken])
 
   const listItemStyle = {
-    ['text-align']: 'left',
+    textAlign: 'left',
     padding: '0.75em',
     border: '1px solid #ccc',
     margin: '0.5em 0',
@@ -108,10 +108,10 @@ export default function ChatWindow({ loginToken, accessToken }) {
   return (
     <div style={{ width: '50%', margin: '0 auto' }}>
       <h2>Connected to {roomIds[0]}</h2>
-      <ul style={{ ['list-style-type']: 'none' }}>
+      <ul style={{ listStyleType: 'none' }}>
         {roomEvents.map(({ id, sender, dt, message }) => (
           <li style={listItemStyle} key={id}>
-            <time datetime={dt.toISOString()}>
+            <time dateTime={dt.toISOString()}>
               <em>{sender.split(':')[0]}</em> at {dt.toLocaleTimeString()}
             </time>:
             <br />{message}

@@ -82,21 +82,6 @@ function App(props) {
     console.log(`⛓ A new mainnet block is here: ${mainnetProvider._lastBlockNumber}`)
   })
 
-  // Then read your DAI balance like:
-//  const myMainnetDAIBalance = useContractReader({DAI: mainnetDAIContract},"DAI", "balanceOf",["0x34aA3F359A9D614239015126635CE7732c18fDF3"])
-
-  // keep track of a variable from the contract in the local React state:
-  //const purpose = useContractReader(readContracts,"YourContract", "purpose")
-
-  //📟 Listen for broadcast events
-  //const setPurposeEvents = useEventListener(readContracts, "YourContract", "SetPurpose", localProvider, 1);
-
-  /*
-  const addressFromENS = useResolveName(mainnetProvider, "austingriffith.eth");
-  console.log("🏷 Resolved austingriffith.eth as:",addressFromENS)
-  */
-
-  //
   // 🧫 DEBUG 👨🏻‍🔬
   //
   useEffect(()=>{
@@ -115,7 +100,6 @@ function App(props) {
   return (
     <div className="App">
 
-      {/* ✏️ Edit the header and change the title to your project name */}
       <Header />
 
 			<BrowserRouter>
