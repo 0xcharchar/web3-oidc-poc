@@ -1,0 +1,5 @@
+FROM docker.io/matrixdotorg/synapse:latest
+
+ADD synapse-data/backend.crt /etc/ssl/certs/
+RUN update-ca-certificates
+

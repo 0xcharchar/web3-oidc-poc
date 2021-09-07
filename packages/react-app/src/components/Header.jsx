@@ -7,7 +7,7 @@ export default function Header() {
   return (
     <a href="/" >
       <PageHeader
-        title="🔏 Sign in with Web3"
+        title="🔏 Sign in to Matrix room with Web3"
         subTitle="Sign a message with your wallet to log in..."
         style={{ cursor: "pointer" }}
       />

@@ -1,0 +1,61 @@
+version: "3"
+
+services:
+
+  synapse:
+    build:
+      context: ./docker
+      dockerfile: Dockerfile.synapse
+    # Since synapse does not retry to connect to the database, restart upon
+    # failure
+    restart: unless-stopped
+    networks:
+      - matrix-network
+    # See the readme for a full documentation of the environment settings
+    environment:
+      - SYNAPSE_NO_TLS=1
+      - SYNAPSE_SERVER_NAME=matrix.web3oidc.localhost
+      - SYNAPSE_REPORT_STATS=no
+      - SYNAPSE_ENABLE_REGISTRATION=yes
+      - SYNAPSE_LOG_LEVEL=INFO
+      - POSTGRES_PASSWORD=changeme
+      - SSL_CERT_FILE=/data/backend.crt
+    volumes:
+      - ./docker/synapse-data:/data
+    depends_on:
+      - db
+    # In order to expose Synapse, remove one of the following, you might for
+    # instance expose the TLS port directly:
+    ports:
+      - 8008:8008
+
+  db:
+    image: docker.io/postgres:13-alpine
+    networks:
+      - matrix-network
+    # Change that password, of course!
+    environment:
+      POSTGRES_USER: synapse_user
+      POSTGRES_PASSWORD: changeme
+      POSTGRES_DB: synapsetest
+      POSTGRES_INITDB_ARGS: '--encoding=UTF8 --lc-collate=C --lc-ctype=C'
+
+  backend:
+    container_name: backend
+    build:
+      context: packages/backend
+      dockerfile: Dockerfile
+    networks:
+      - matrix-network
+    volumes:
+      - ./packages/backend/index.js:/usr/src/app/index.js
+    ports:
+      - 49832:49832
+
+# This setup allows for running OpenVPN and a custom dockernetwork
+networks:
+  matrix-network:
+    ipam:
+      config:
+        - subnet: 172.16.238.0/24
+          gateway: 172.16.238.1
